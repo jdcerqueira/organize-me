@@ -1,0 +1,23 @@
+[
+    {
+        "database": "ORGANIZEDB01",
+        "version": "3",
+        "file": "v3_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-06-29 13:31:31.276366",
+        "status": "executed"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "2",
+        "file": "v2_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-06-29 13:31:31.269124",
+        "status": "executed"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "1",
+        "file": "v1_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-06-29 13:31:31.264124",
+        "status": "executed"
+    }
+]
