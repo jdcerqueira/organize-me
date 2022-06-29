@@ -1,0 +1,109 @@
+USE ORGANIZE_DB
+GO
+
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.objects WHERE name = 'insereComplementoFormaPagamento' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP PROCEDURE fontes.insereComplementoFormaPagamento
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.objects WHERE name = 'insereFormaPagamento' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP PROCEDURE fontes.insereFormaPagamento
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.objects WHERE name = 'vwTipoPagamento' AND schema_id = SCHEMA_ID('consultas'))
+BEGIN
+	DROP VIEW consultas.vwTipoPagamento
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.objects WHERE name = 'vwComplementoFormaPagamento' AND schema_id = SCHEMA_ID('consultas'))
+BEGIN
+	DROP FUNCTION consultas.vwComplementoFormaPagamento
+END
+GO
+
+/*
+Nome: fontes.insereComplementoFormaPagamento
+Descrição: Inclusão de complemento para forma de pagamento
+Data: 16-06-2022
+Autor: J.
+**************************************
+Manutenções:
+*/
+CREATE PROCEDURE fontes.insereComplementoFormaPagamento
+	@identificador	UNIQUEIDENTIFIER,
+	@chave			VARCHAR(100),
+	@valor			VARCHAR(8000)
+WITH EXECUTE AS OWNER
+AS 
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @codigo INT = (SELECT codigo FROM fontes.FormaPagamento WHERE identificador = @identificador)
+	DECLARE @ordem	INT = ISNULL((SELECT MAX(ordem) FROM fontes.ComplementoFormaPagamento WHERE codigo = @codigo),0) + 1
+
+	INSERT INTO fontes.ComplementoFormaPagamento(codigo, ordem, chave, valor)
+	OUTPUT inserted.chave, inserted.valor
+	VALUES(@codigo, @ordem, @chave, @valor)
+
+	EXEC fontes.atualizaViewComplementoFormaPagamento
+
+	SET NOCOUNT OFF
+END
+GO
+
+/*
+Nome: fontes.insereFormaPagamento
+Descrição: Inclusão de formas de pagamento
+Data: 16-06-2022
+Autor: J.
+**************************************
+Manutenções:
+*/
+CREATE PROCEDURE fontes.insereFormaPagamento
+	@nome	VARCHAR(70),
+	@tipo	CHAR(30),
+	@banco	INT
+WITH EXECUTE AS OWNER
+AS 
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @codTipo INT = (SELECT codigo FROM fontes.TipoPagamento WHERE descricao = @tipo)
+
+	INSERT INTO fontes.FormaPagamento
+		(nome, tipo, banco)
+	OUTPUT inserted.identificador, inserted.nome
+	VALUES(@nome, @codTipo, @banco)
+
+	EXEC fontes.atualizaViewComplementoFormaPagamento
+
+	SET NOCOUNT OFF
+END
+GO
+
+CREATE VIEW consultas.vwTipoPagamento
+AS
+	SELECT descricao [tipo] FROM fontes.TipoPagamento
+GO
+
+
+CREATE FUNCTION consultas.vwComplementoFormaPagamento
+(
+	@identificador	UNIQUEIDENTIFIER
+)
+RETURNS TABLE
+AS RETURN
+(
+	SELECT
+		Forma.identificador, Forma.nome, Compl.ordem, Compl.chave, Compl.valor
+	FROM fontes.ComplementoFormaPagamento Compl
+		INNER JOIN fontes.FormaPagamento Forma ON Forma.codigo = Compl.codigo
+	WHERE
+		Forma.identificador = @identificador
+)
+GO

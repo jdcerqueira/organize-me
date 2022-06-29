@@ -1,0 +1,212 @@
+PRINT 'Início do script v5. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')'
+GO
+
+SET NOCOUNT ON
+GO
+
+USE ORGANIZE_DB
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.sequences WHERE name = 'seqBancosPersonalizados' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP SEQUENCE fontes.seqBancosPersonalizados
+	PRINT 'v5 - 001 - Exclusão da sequence ´fontes.seqBancosPersonalizados´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.procedures WHERE name = 'insereBanco' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP PROCEDURE fontes.insereBanco
+	PRINT 'v5 - 002 - Exclusão da procedure ´fontes.insereBanco´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.procedures WHERE name = 'atualizaViewComplementoFormaPagamento' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP PROCEDURE fontes.atualizaViewComplementoFormaPagamento
+	PRINT 'v5 - 003 - Exclusão da procedure ´fontes.atualizaViewComplementoFormaPagamento´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'ComplementoFormaPagamento' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP TABLE fontes.ComplementoFormaPagamento
+	PRINT 'v5 - 004 - Exclusão da tabela ´fontes.ComplementoFormaPagamento´.'
+END
+GO
+
+CREATE TABLE fontes.ComplementoFormaPagamento
+(
+	codigo				INT					NOT NULL	PRIMARY KEY,
+	diaPagamentoFatura	TINYINT				NOT NULL	DEFAULT(0),
+	diaFechamentoFatura	TINYINT				NOT NULL	DEFAULT(0),
+	limite				FLOAT				NOT NULL	DEFAULT(0.0),
+	diaDeposito			TINYINT				NOT NULL	DEFAULT(0),
+	CONSTRAINT FKFormaPagamento01 FOREIGN KEY(codigo)
+		REFERENCES fontes.FormaPagamento(codigo)
+)
+GO
+PRINT 'v5 - 005 - Criação da tabela ´fontes.ComplementoFormaPagamento´.'
+GO
+
+INSERT INTO fontes.ComplementoFormaPagamento
+	(codigo, diaPagamentoFatura, diaFechamentoFatura, limite, diaDeposito)
+SELECT Forma.codigo, Compl.diaPagamento, Compl.diaFechamento, Compl.limite, Compl.diaDeposito
+FROM (VALUES
+		('ItauCard',14,4,40000,0),
+		('BradescoCard',1,25,20000,0),
+		('Cartão Nubank',15,7,1500,0),
+		('Alelo Refeição',0,0,900,28),
+		('Alelo Alimentação',0,0,700,28)
+	) Compl(descricao, diaPagamento, diaFechamento, limite,diaDeposito)
+	INNER JOIN fontes.FormaPagamento Forma ON Forma.nome = Compl.descricao
+PRINT 'v5 - 006 - Carga inicial na tabela ´fontes.ComplementoFormaPagamento´ ('+ CONVERT(VARCHAR,@@ROWCOUNT) +').'
+GO
+
+CREATE SEQUENCE fontes.seqBancosPersonalizados
+	AS INT
+	START WITH -1
+	INCREMENT BY -1
+	NO MINVALUE
+	MAXVALUE -1
+	CYCLE
+	NO CACHE
+GO
+PRINT 'v5 - 007 - Criação da sequence ´fontes.seqBancosPersonalizados´.'
+GO
+
+/*
+Nome:fontes.insereBanco
+Definição: Inclusão de vínculos de bancos no sistema.
+Data: 16-06-2022
+Autor: J.
+****************************************
+Manutenções:
+*/
+CREATE PROCEDURE fontes.insereBanco
+	@codigo	INT,
+	@nome	VARCHAR(100)
+AS
+BEGIN
+	IF @codigo IS NULL
+		INSERT INTO fontes.Bancos
+			(codigo, nome)
+		OUTPUT inserted.codigo
+		VALUES
+			(NEXT VALUE FOR fontes.seqBancosPersonalizados, @nome)
+	ELSE
+		INSERT INTO fontes.Bancos
+			(codigo, nome)
+		OUTPUT inserted.codigo
+		VALUES
+			(@codigo, @nome)
+		
+END
+GO
+PRINT 'v5 - 008 - Criação da procedure ´fontes.insereBanco´.'
+GO
+
+CREATE TABLE #tempComplementoFormaPagamento
+(
+	codigo	INT,
+	ordem	INT,
+	chave	VARCHAR(100),
+	valor	VARCHAR(8000)
+)
+GO
+PRINT 'v5 - 009 - Criação da tabela ´#tempComplementoFormaPagamento´.'
+GO
+
+INSERT INTO #tempComplementoFormaPagamento
+	(codigo, ordem, chave, valor)
+SELECT codigo, ROW_NUMBER() OVER(PARTITION BY codigo ORDER BY codigo) ordem, chave, valor
+FROM
+	(SELECT codigo, 
+		CONVERT(VARCHAR(MAX),diaPagamentoFatura) diaPagamentoFatura, 
+		CONVERT(VARCHAR(MAX),diaFechamentoFatura) diaFechamentoFatura, 
+		CONVERT(VARCHAR(MAX),limite) limite, 
+		CONVERT(VARCHAR(MAX),diaDeposito) diaDeposito
+	FROM fontes.ComplementoFormaPagamento) T
+UNPIVOT
+	(valor FOR chave IN(diaPagamentoFatura, diaFechamentoFatura, limite, diaDeposito)) AS UPVT
+
+PRINT 'v5 - 010 - Carga na tabela ´#tempComplementoFormaPagamento´. ('+ CONVERT(VARCHAR,@@ROWCOUNT) +')'
+GO
+
+DROP TABLE fontes.ComplementoFormaPagamento
+PRINT 'v5 - 011 - Exclusão da tabela ´fontes.ComplementoFormaPagamento´.'
+GO
+
+
+CREATE TABLE fontes.ComplementoFormaPagamento
+(
+	codigo	INT NOT NULL,
+	ordem	INT NOT NULL,
+	chave	VARCHAR(100),
+	valor	VARCHAR(8000),
+	CONSTRAINT PKfontes_ComplementoFormaPagamento PRIMARY KEY(codigo, ordem),
+	CONSTRAINT FKFormaPagamento01 FOREIGN KEY(codigo)
+		REFERENCES fontes.FormaPagamento(codigo),
+	CONSTRAINT UQfontes_ComplementoFormaPagamento01 UNIQUE(codigo, chave)
+)
+GO
+PRINT 'v5 - 012 - Criação da tabela ´fontes.ComplementoFormaPagamento´.'
+GO
+
+INSERT INTO fontes.ComplementoFormaPagamento
+	(codigo, ordem, chave, valor)
+SELECT codigo, ordem, chave, valor 
+FROM #tempComplementoFormaPagamento
+PRINT 'v5 - 013 - Carga na tabela ´fontes.ComplementoFormaPagamento´. ('+ CONVERT(VARCHAR,@@ROWCOUNT) +')'
+GO
+
+DROP TABLE #tempComplementoFormaPagamento
+PRINT 'v5 - 014 - Exclusão da tabela ´#tempComplementoFormaPagamento´.'
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'tempView_FormasPagamentos' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP TABLE fontes.tempView_FormasPagamentos
+	PRINT 'v5 - 015 - Exclusão da tabela ´consultas.vwFormasPagamentos´.'
+END
+GO
+
+CREATE PROCEDURE fontes.atualizaViewComplementoFormaPagamento
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @Colunas VARCHAR(8000) = (SELECT DISTINCT '[' + chave + ']' + ',' "data()" FROM fontes.ComplementoFormaPagamento FOR XML PATH(''))
+	DECLARE @ColunasAlias VARCHAR(8000) = (SELECT DISTINCT 'Compl.' + chave + ',' "data()" FROM fontes.ComplementoFormaPagamento FOR XML PATH(''))
+	SELECT @Colunas = LEFT(@Colunas,LEN(@Colunas) - 1), @ColunasAlias = LEFT(@ColunasAlias,LEN(@ColunasAlias) - 1)
+	
+	IF OBJECT_ID('fontes.tempView_FormasPagamentos','U') IS NOT NULL
+		DROP TABLE fontes.tempView_FormasPagamentos
+
+	DECLARE @Query VARCHAR(MAX) = 'SELECT codigo, ' + @Colunas + ' FROM (SELECT codigo, chave, valor FROM fontes.ComplementoFormaPagamento) SCR PIVOT(MAX(valor) FOR chave IN('+ @Colunas +')) PVT'
+	DECLARE @QueryFinal	VARCHAR(MAX) = 'SELECT ' +
+										' Formas.identificador, Formas.nome, Tipos.descricao [tipo], '+
+										' Bancos.nome [banco], '+ @ColunasAlias +
+										' INTO fontes.tempView_FormasPagamentos' +
+										' FROM fontes.FormaPagamento Formas '+
+										'	INNER JOIN fontes.TipoPagamento Tipos ON Tipos.codigo = Formas.tipo '+
+										'	LEFT JOIN fontes.Bancos Bancos ON Bancos.codigo = Formas.banco ' +
+										'	LEFT JOIN (' + @Query + ') Compl ON Compl.codigo = Formas.codigo '
+	EXECUTE(@QueryFinal)
+	EXECUTE('DROP VIEW consultas.vwFormasPagamentos')
+	DECLARE @CreateView	VARCHAR(MAX) = 'CREATE VIEW consultas.vwFormasPagamentos ' +
+										' AS ' +
+										'	SELECT * FROM fontes.tempView_FormasPagamentos '
+
+	EXECUTE(@CreateView)
+	SET NOCOUNT OFF
+END
+GO
+PRINT 'v5 - 016 - Criação da procedure ´fontes.atualizaViewComplementoFormaPagamento´.'
+GO
+EXEC fontes.atualizaViewComplementoFormaPagamento
+PRINT 'v5 - 017 - Execução da procedure ´fontes.atualizaViewComplementoFormaPagamento´.'
+GO
+
+PRINT 'Fim do script v5. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')'
+GO

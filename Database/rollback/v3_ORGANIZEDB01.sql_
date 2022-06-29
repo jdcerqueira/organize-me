@@ -1,0 +1,17 @@
+PRINT 'Rollback... Inicio do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZE_DB;
+DROP SCHEMA fontes;
+PRINT 'Rollback... v3 - 001 - Excluindo o schema [fontes].';
+DROP SCHEMA despesas;
+PRINT 'Rollback... v3 - 002 - Excluindo o schema [despesas].';
+DROP SCHEMA efetuados;
+PRINT 'Rollback... v3 - 003 - Excluindo o schema [efetuados].';
+DROP SCHEMA sugeridos;
+PRINT 'Rollback... v3 - 004 - Excluindo o schema [sugeridos].';
+DROP SCHEMA movimentacoes;
+PRINT 'Rollback... v3 - 005 - Excluindo o schema [movimentacoes].';
+DROP SCHEMA receitas;
+PRINT 'Rollback... v3 - 006 - Excluindo o schema [receitas].';
+DROP SCHEMA consultas;
+PRINT 'Rollback... v3 - 007 - Excluindo o schema [receitas].';
+PRINT 'Rollback... Fim do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

@@ -1,0 +1,179 @@
+PRINT 'Início do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')'
+GO
+
+USE ORGANIZE_DB
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Receitas' AND schema_id = schema_id('movimentacoes'))
+BEGIN
+	DROP TABLE movimentacoes.Receitas
+	PRINT 'v3 - 001 - Exclusão da tabela ´movimentacoes.Receitas´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Cadastro' AND schema_id = schema_id('receitas'))
+BEGIN
+	DROP TABLE receitas.Cadastro
+	PRINT 'v3 - 002 - Exclusão da tabela ´receitas.Cadastro´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Despesas' AND schema_id = schema_id('movimentacoes'))
+BEGIN
+	DROP TABLE movimentacoes.Despesas
+	PRINT 'v3 - 003 - Exclusão da tabela ´movimentacoes.Despesas´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Cadastro' AND schema_id = schema_id('despesas'))
+BEGIN
+	DROP TABLE despesas.Cadastro
+	PRINT 'v3 - 004 - Exclusão da tabela ´despesas.Cadastro´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Responsaveis' AND schema_id = schema_id('util'))
+BEGIN
+	DROP TABLE util.Responsaveis
+	PRINT 'v3 - 005 - Exclusão da tabela ´util.Responsaveis´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Categorias' AND schema_id = schema_id('util'))
+BEGIN
+	DROP TABLE util.Categorias
+	PRINT 'v3 - 006 - Exclusão da tabela ´util.Categorias´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Estabelecimentos' AND schema_id = schema_id('util'))
+BEGIN
+	DROP TABLE util.Estabelecimentos
+	PRINT 'v3 - 007 - Exclusão da tabela ´util.Estabelecimentos´.'
+END
+GO
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.schemas WHERE name = 'util')
+BEGIN
+	DROP SCHEMA util
+	PRINT 'v3 - 008 - Exclusão do schema ´util´.'
+END
+GO
+
+CREATE SCHEMA util AUTHORIZATION [dbo]
+GO
+PRINT 'v3 - 009 - Criação do schema ´util´.'
+GO
+
+CREATE TABLE util.Estabelecimentos
+(
+	codigo			INT					IDENTITY	PRIMARY KEY,
+	identificador	UNIQUEIDENTIFIER	NOT NULL	DEFAULT NEWID(),
+	nome			VARCHAR(100)		NOT NULL	UNIQUE,
+	endereco		VARCHAR(8000)		NOT NULL	DEFAULT '',
+	cep				CHAR(8)				NOT NULL	CHECK(ISNUMERIC(cep) = 1)
+)
+PRINT 'v3 - 010 - Criação da tabela ´util.Estabelecimentos´.'
+GO
+
+CREATE TABLE util.Categorias
+(
+	codigo			INT				IDENTITY	PRIMARY KEY,
+	identificador	UNIQUEIDENTIFIER	NOT NULL	DEFAULT NEWID(),
+	nome			VARCHAR(100)	NOT NULL,
+	estabelecimento	INT				NULL,
+	CONSTRAINT FKEstabelecimentos01 FOREIGN KEY(estabelecimento)
+		REFERENCES util.Estabelecimentos (codigo)
+)
+PRINT 'v3 - 011 - Criação da tabela ´util.Categorias´.'
+GO
+
+CREATE TABLE util.Responsaveis
+(
+	codigo			INT				IDENTITY	PRIMARY KEY,
+	identificador	UNIQUEIDENTIFIER	NOT NULL	DEFAULT NEWID(),
+	nome			VARCHAR(100)	NOT NULL	UNIQUE
+)
+PRINT 'v3 - 012 - Criação da tabela ´util.Responsaveis´.'
+GO
+
+CREATE TABLE despesas.Cadastro
+(
+	codigo				BIGINT			IDENTITY	PRIMARY KEY,
+	nome				VARCHAR(100)	NOT NULL	UNIQUE,
+	descricao			VARCHAR(256)	NOT NULL,
+	valor				FLOAT			NOT NULL	DEFAULT 0,
+	dataCadastro		DATETIME		NOT NULL	DEFAULT GETDATE(),
+	dataMovimentacao	DATETIME		NOT NULL	DEFAULT GETDATE(),
+	dataPagamento		DATETIME		NOT NULL	DEFAULT GETDATE(),
+	formaPagamento		INT				NOT NULL,
+	parcelas			INT				NOT NULL	DEFAULT 1,
+	recorrente			BIT				NOT NULL	DEFAULT 0,
+	categoria			INT				NOT NULL,
+	responsavel			INT				NOT NULL,
+	CONSTRAINT FKFormaPagamento02 FOREIGN KEY (formaPagamento)
+		REFERENCES fontes.FormaPagamento(codigo),
+	CONSTRAINT FKCategorias01 FOREIGN KEY(categoria)
+		REFERENCES util.Categorias(codigo),
+	CONSTRAINT FKResponsaveis01 FOREIGN KEY(responsavel)
+		REFERENCES util.Responsaveis(codigo)
+)
+PRINT 'v3 - 013 - Criação da tabela ´despesas.Cadastro´.'
+GO
+
+CREATE TABLE movimentacoes.Despesas
+(
+	codigo		UNIQUEIDENTIFIER	NOT NULL	DEFAULT NEWID(),
+	despesa		BIGINT				NOT NULL	PRIMARY KEY,
+	dataHora	DATETIME			NOT NULL	DEFAULT GETDATE(),
+	valor		FLOAT				NOT NULL	DEFAULT 0,
+	parcela		INT					NOT NULL	DEFAULT 1,
+	quitado		BIT					NOT NULL	DEFAULT 0,
+	CONSTRAINT FKdespesas_Cadastro01 FOREIGN KEY (despesa)
+		REFERENCES despesas.Cadastro (codigo)
+		
+)
+PRINT 'v3 - 014 - Criação da tabela ´movimentacoes.Despesas´.'
+GO
+
+CREATE TABLE receitas.Cadastro
+(
+	codigo				BIGINT			IDENTITY	PRIMARY KEY,
+	nome				VARCHAR(100)	NOT NULL	UNIQUE,
+	descricao			VARCHAR(256)	NOT NULL,
+	valor				FLOAT			NOT NULL	DEFAULT 0,
+	dataCadastro		DATETIME		NOT NULL	DEFAULT GETDATE(),
+	dataMovimentacao	DATETIME		NOT NULL	DEFAULT GETDATE(),
+	dataPagamento		DATETIME		NOT NULL	DEFAULT GETDATE(),
+	formaPagamento		INT				NOT NULL,
+	parcelas			INT				NOT NULL	DEFAULT 1,
+	recorrente			BIT				NOT NULL	DEFAULT 0,
+	categoria			INT				NOT NULL,
+	responsavel			INT				NOT NULL,
+	CONSTRAINT FKFormaPagamento02 FOREIGN KEY (formaPagamento)
+		REFERENCES fontes.FormaPagamento(codigo),
+	CONSTRAINT FKCategorias01 FOREIGN KEY(categoria)
+		REFERENCES util.Categorias(codigo),
+	CONSTRAINT FKResponsaveis01 FOREIGN KEY(responsavel)
+		REFERENCES util.Responsaveis(codigo)
+)
+PRINT 'v3 - 015 - Criação da tabela ´receitas.Cadastro´.'
+GO
+
+CREATE TABLE movimentacoes.Receitas
+(
+	codigo		UNIQUEIDENTIFIER	NOT NULL	DEFAULT NEWID(),
+	receita		BIGINT				NOT NULL	PRIMARY KEY,
+	dataHora	DATETIME			NOT NULL	DEFAULT GETDATE(),
+	valor		FLOAT				NOT NULL	DEFAULT 0,
+	parcela		INT					NOT NULL	DEFAULT 1,
+	quitado		BIT					NOT NULL	DEFAULT 0,
+	CONSTRAINT FKreceitas_Cadastro01 FOREIGN KEY (receita)
+		REFERENCES receitas.Cadastro (codigo)
+)
+PRINT 'v3 - 016 - Criação da tabela ´movimentacoes.Receitas´.'
+GO
+
+
+PRINT 'Fim do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')'
+GO
