@@ -1,23 +1,186 @@
 [
     {
         "database": "ORGANIZEDB01",
+        "version": "23",
+        "file": "v23_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-04 21:46:26.751034",
+        "status": "executed",
+        "description": "Cria procedures de insercao e exclusao da tabela [fontes].[ComplementoFormaPagamento].\nPRINT 'Inicio do script v23. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')'"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "22",
+        "file": "v22_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-04 21:30:56.465889",
+        "status": "executed",
+        "description": "Cria a funcao [app].[fComplementoFormaPagamento].\nPRINT 'Inicio do script v22. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')'"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "21",
+        "file": "v21_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-04 17:43:30.726067",
+        "status": "executed",
+        "description": "Cria as procedures de insercao e exclusao da tabela [fontes].[FormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "20",
+        "file": "v20_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-04 17:31:39.877214",
+        "status": "executed",
+        "description": "Cria a view [app].[vFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "19",
+        "file": "v19_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-04 17:10:45.254913",
+        "status": "executed",
+        "description": "Cria as tabelas [fontes].[FormaPagamento] e [fontes].[ComplementoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "18",
+        "file": "v18_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-03 16:58:31.770634",
+        "status": "executed",
+        "description": "Cria as procedures de controle do template (insere e apaga), para templates e itens"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "17",
+        "file": "v17_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-03 16:31:29.488278",
+        "status": "executed",
+        "description": "Cria a view [app].[vTemplateComplementoFormaPagamento] e a function [app].[fTemplateItemComplementoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "16",
+        "file": "v16_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-02 21:54:24.804490",
+        "status": "executed",
+        "description": "Cria as tabelas [fontes].[TemplateComplementoFormaPagamento] e [fontes].[TemplateItemComplementoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "15",
+        "file": "v15_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-02 00:03:41.128741",
+        "status": "executed",
+        "description": "Cria as procedures [app].[insereItemComplementoFormaPagamento] e [app].[insereItemComplementoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "14",
+        "file": "v14_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 15:55:33.920540",
+        "status": "executed",
+        "description": "Cria a view [app].[vItemComplementoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "13",
+        "file": "v13_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 15:36:34.686710",
+        "status": "executed",
+        "description": "Cria a tabela [fontes].[ItemComplementoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "12",
+        "file": "v12_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.783300",
+        "status": "executed",
+        "description": "Cria a procedure [app].[apagaTipoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "11",
+        "file": "v11_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.775311",
+        "status": "executed",
+        "description": "Cria a procedure [app].[insereTipoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "10",
+        "file": "v10_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.767296",
+        "status": "executed",
+        "description": "Cria a view [app].[vTipoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "9",
+        "file": "v9_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.759293",
+        "status": "executed",
+        "description": "Cria a tabela [fontes].[TipoFormaPagamento]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "8",
+        "file": "v8_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.747779",
+        "status": "executed",
+        "description": "Cria a procedure [app].[apagaBanco]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "7",
+        "file": "v7_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.737777",
+        "status": "executed",
+        "description": "Cria a view [app].[vBancos]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "6",
+        "file": "v6_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.729776",
+        "status": "executed",
+        "description": "Cria a tabela [fontes].[Bancos]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "5",
+        "file": "v5_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.715772",
+        "status": "executed",
+        "description": "Cria a sequence [fontes].[seqBancosPersonalizados] e a procedure [app].[insereBanco]"
+    },
+    {
+        "database": "ORGANIZEDB01",
+        "version": "4",
+        "file": "v4_ORGANIZEDB01.sql",
+        "last_date_execution": "2022-07-01 12:35:44.704769",
+        "status": "executed",
+        "description": "Cria o schema [app]"
+    },
+    {
+        "database": "ORGANIZEDB01",
         "version": "3",
         "file": "v3_ORGANIZEDB01.sql",
-        "last_date_execution": "2022-06-29 14:20:47.038312",
-        "status": "executed"
+        "last_date_execution": "2022-07-01 12:35:44.698768",
+        "status": "executed",
+        "description": "Cria o schema [fontes]"
     },
     {
         "database": "ORGANIZEDB01",
         "version": "2",
         "file": "v2_ORGANIZEDB01.sql",
-        "last_date_execution": "2022-06-29 13:31:31.269124",
-        "status": "executed"
+        "last_date_execution": "2022-07-01 12:35:44.693766",
+        "status": "executed",
+        "description": "Cria o usuario [aplicacao] na base [ORGANIZEDB01] e cria a rule [Cliente]"
     },
     {
         "database": "ORGANIZEDB01",
         "version": "1",
         "file": "v1_ORGANIZEDB01.sql",
-        "last_date_execution": "2022-06-29 13:31:31.264124",
-        "status": "executed"
+        "last_date_execution": "2022-07-01 12:35:44.685611",
+        "status": "executed",
+        "description": "Cria base de dados [ORGANIZEDB01] e o login [aplicacao]"
     }
 ]

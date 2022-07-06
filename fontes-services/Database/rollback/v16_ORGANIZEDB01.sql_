@@ -1,0 +1,8 @@
+--##Commit Cria as tabelas [fontes].[TemplateComplementoFormaPagamento] e [fontes].[TemplateItemComplementoFormaPagamento];
+PRINT 'Rollback... Inicio do script v16. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP TABLE [fontes].[TemplateItemComplementoFormaPagamento];
+PRINT 'Rollback... v16 - 001 - Exclusao da tabela [fontes].[TemplateItemComplementoFormaPagamento].';
+DROP TABLE [fontes].[TemplateComplementoFormaPagamento];
+PRINT 'Rollback... v16 - 002 - Exclusao da tabela [fontes].[TemplateComplementoFormaPagamento].';
+PRINT 'Rollback... Fim do script v16. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

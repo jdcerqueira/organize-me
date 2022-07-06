@@ -16,12 +16,12 @@ def printTableInfo(infos):
 
         for field in infos:
             len_of_fields.append([len(length) for length in field])
-            for idx in range(0,len(field)-1):
+            for idx in range(0,len(field)):
                 len_general[idx] = len(field[idx]) if len(field[idx]) > len_general[idx] else len_general[idx]
 
         for info in infos:
             line = []
-            for idx in range(0,len(info)-1):
+            for idx in range(0,len(info)):
                 n = (len_general[idx]) - len(info[idx])
                 line.append(info[idx] + "".join([c*n for c in " "]))
 
@@ -35,10 +35,10 @@ def printTableInfo(infos):
 
 def listDetailsDb(database):
     versions_database = json.loads(open(os.path.abspath("control/"+database+"/versions_applied.json"),"r").read())
-    infos = [("Database","Version","File","Last_Date_Execution","Status")]
+    infos = [("Database","Version","File","Last_Date_Execution","Status","Description")]
     for version in versions_database:
-        infos.append((version["database"], version["version"], version["file"],version["last_date_execution"],version["status"]))
-        
+        infos.append((version["database"], version["version"], version["file"],version["last_date_execution"],version["status"],version["description"]))
+
     printTableInfo(infos)
 
 if len(dbControlFolders):

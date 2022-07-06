@@ -1,3 +1,4 @@
+--##Commit Cria o schema [fontes];
 PRINT 'Inicio do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
 USE ORGANIZEDB01;
 CREATE SCHEMA fontes AUTHORIZATION [dbo];

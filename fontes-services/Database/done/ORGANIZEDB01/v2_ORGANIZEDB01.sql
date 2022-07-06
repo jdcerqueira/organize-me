@@ -1,3 +1,4 @@
+--##Commit Cria o usuário [aplicacao] na base [ORGANIZEDB01] e cria a rule [Cliente];
 PRINT 'Inicio do script v2. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
 USE ORGANIZEDB01;
 PRINT 'v2 - 001 - Acessando a base ORGANIZEDB01.';

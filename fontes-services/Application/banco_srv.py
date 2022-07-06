@@ -19,16 +19,24 @@ class Bancos(Resource):
         nome = banco["nome"]
         inserido = BancoDAO().insereBanco(codigo, nome)
         return inserido["return"], inserido["http_state"]
-        #return {"banco":codigo, "nome": nome}
 
+    def delete(self, codigo):
+        apagado = BancoDAO().apagaBanco(codigo)
+        return apagado["return"], apagado["http_state"]
         
 
 class BancosGerais(Resource):
     def get(self, codigo = ""):
+        retorno = []
         if codigo == "":
             return ListaBancosGerais().listaBancos
         else:
-            retorno = [item for item in ListaBancosGerais().listaBancos if item["banco"] == codigo]
-            
-        return(retorno[0])
+            for item in ListaBancosGerais().listaBancos:
+                if (item["banco"] == codigo) or (codigo.lower() in item["nome"].lower()):
+                    retorno.append(item)
+
+        if not len(retorno):
+            return [], 204
+
+        return retorno
         

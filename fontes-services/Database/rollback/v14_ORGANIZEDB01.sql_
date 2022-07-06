@@ -1,0 +1,6 @@
+--##Commit Cria a view [app].[vItemComplementoFormaPagamento];
+PRINT 'Rollback... Inicio do script v14. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP VIEW [app].[vItemComplementoFormaPagamento]
+PRINT 'Rollback... v14 - 001 - Exclusao da view [app].[vItemComplementoFormaPagamento].';
+PRINT 'Rollback... Fim do script v14. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

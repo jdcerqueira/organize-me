@@ -1,3 +1,4 @@
+--##Commit Cria base de dados [ORGANIZEDB01] e o login [aplicacao];
 PRINT 'Inicio do script v1. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
 
 USE master;

@@ -12,10 +12,10 @@ class BancoDAO():
         retorno = []
 
         try:
-            self.cursor.execute("SELECT codigo, nome FROM consultas.vwBancos ORDER BY nome")
+            self.cursor.execute("SELECT codigo, nome FROM app.vBancos ORDER BY nome")
             row = self.cursor.fetchone()
             while row:
-                retorno.append({"numero":row[0], "nome":row[1]})
+                retorno.append({"banco":row[0], "nome":row[1]})
                 row = self.cursor.fetchone()
 
             if len(retorno):
@@ -26,18 +26,16 @@ class BancoDAO():
             return {"return":self.exceptions(ex), "http_state":500}
 
     def listaBanco(self, numero):
-        retorno = {}
+        retorno = []
 
         try:
-            self.cursor.execute("SELECT codigo, nome FROM consultas.vwBancos WHERE codigo = "+ numero)
+            self.cursor.execute("SELECT codigo, nome FROM app.vBancos WHERE (ISNUMERIC('"+ str(numero) +"')=1 AND codigo = '"+ str(numero) +"') OR LOWER(nome) LIKE '%"+ str(numero).lower() +"%'")
             row = self.cursor.fetchone()
             while row:
-                retorno["numero"] = row[0]
-                retorno["nome"] = row[1]
-
+                retorno.append({"banco":row[0], "nome":row[1]})
                 row = self.cursor.fetchone()
 
-            if retorno != {}:
+            if len(retorno):
                 return {"return":retorno, "http_state":200}
 
             return {"return":retorno, "http_state":204}
@@ -47,11 +45,26 @@ class BancoDAO():
     def insereBanco(self, codigo, nome):
         retorno = {}
         try:
-            self.cursor.execute("{call fontes.insereBanco("+ ("null" if codigo == None else codigo) +",'"+ nome +"')}")
+            self.cursor.execute("{call app.insereBanco("+ ("null" if codigo == None else codigo) +",'"+ nome +"')}")
             row = self.cursor.fetchone()
             retorno = {"banco":row[0], "nome": nome, "retorno":"Banco vinculado com sucesso."}
             self.connection.commit()
             return {"return":retorno, "http_state":201}
+        except pyodbc.Error as ex:
+            return {"return":self.exceptions(ex), "http_state":500}
+
+    def apagaBanco(self, codigo):
+        retorno = {}
+        try:
+            self.cursor.execute("{call app.apagaBanco("+ codigo +")}")
+            row = self.cursor.fetchone()
+            if row:
+                retorno = {"banco":row[0], "nome": row[1], "retorno":"Banco excluído com sucesso."}
+                self.connection.commit()
+            else:
+                return {"return":retorno, "http_state":204}
+
+            return {"return":retorno, "http_state":200}
         except pyodbc.Error as ex:
             return {"return":self.exceptions(ex), "http_state":500}
 

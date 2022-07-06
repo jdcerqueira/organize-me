@@ -1,0 +1,8 @@
+--##Commit Cria as tabelas [fontes].[FormaPagamento] e [fontes].[ComplementoFormaPagamento];
+PRINT 'Rollback... Inicio do script v19. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP TABLE [fontes].[ComplementoFormaPagamento];
+PRINT 'Rollback... v19 - 001 - Exclusao da tabela [fontes].[ComplementoFormaPagamento].';
+DROP TABLE [fontes].[FormaPagamento];
+PRINT 'Rollback... v19 - 002 - Exclusao da tabela [fontes].[FormaPagamento].';
+PRINT 'Rollback... Fim do script v19. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
