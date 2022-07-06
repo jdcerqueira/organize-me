@@ -1,0 +1,8 @@
+--##Commit Exclui as procedures [app].[insereItemComplementoFormaPagamento] e [app].[insereItemComplementoFormaPagamento];
+PRINT 'Rollback... Inicio do script v15. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP PROCEDURE [app].[insereItemComplementoFormaPagamento];
+PRINT 'Rollback... v15 - 001 - Exclusao da procedure [app].[insereItemComplementoFormaPagamento].';
+DROP PROCEDURE [app].[apagaItemComplementoFormaPagamento];
+PRINT 'Rollback... v15 - 002 - Exclusao da procedure [app].[apagaItemComplementoFormaPagamento].';
+PRINT 'Rollback... Fim do script v15. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

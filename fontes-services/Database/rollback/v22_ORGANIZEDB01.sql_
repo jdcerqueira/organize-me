@@ -1,0 +1,6 @@
+--##Commit Cria a funcao [app].[fComplementoFormaPagamento].
+PRINT 'Rollback... Inicio do script v22. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP FUNCTION [app].[fComplementoFormaPagamento];
+PRINT 'Rollback... v22 - 001 - Criacao da funcao [app].[fComplementoFormaPagamento].';
+PRINT 'Rollback... Fim do script v22. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

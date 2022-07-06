@@ -1,0 +1,18 @@
+PRINT 'Rollback... Inicio do script v5. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+IF EXISTS(SELECT TOP 1 1 FROM sys.sequences WHERE name = 'seqBancosPersonalizados' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP SEQUENCE [fontes].[seqBancosPersonalizados]
+	PRINT 'Rollback... v5 - 001 - Exclusao da sequence [fontes].[seqBancosPersonalizados].'
+END;
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Bancos' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP TABLE [fontes].[seqBancosPersonalizados]
+	PRINT 'Rollback... v5 - 002 - Exclusao da sequence [fontes].[seqBancosPersonalizados].'
+END;
+IF OBJECT_ID('app.insereBanco','P') IS NOT NULL
+BEGIN
+	DROP PROCEDURE app.insereBanco
+	PRINT 'Rollback... v5 - 003 - Exclusao da procedure [app].[insereBanco]'
+END;
+PRINT 'Rollback... Fim do script v5. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

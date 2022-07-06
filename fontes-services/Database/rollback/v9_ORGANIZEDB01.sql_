@@ -1,0 +1,5 @@
+PRINT 'Rollback... Inicio do script v9. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP TABLE [fontes].[TipoFormaPagamento]
+PRINT 'Rollback... v9 - 001 - Exclusao da tabela [fontes].[TipoFormaPagamento].'
+PRINT 'Rollback... Fim do script v9. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

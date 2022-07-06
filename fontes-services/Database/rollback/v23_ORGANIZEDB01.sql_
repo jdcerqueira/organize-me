@@ -1,0 +1,8 @@
+--##Commit Cria procedures de insercao e exclusao da tabela [fontes].[ComplementoFormaPagamento].
+PRINT 'Inicio do script v23. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP PROCEDURE [app].[insereComplementoFormaPagamento];
+PRINT 'v23 - 001 - Exclusao da procedure [app].[insereComplementoFormaPagamento].';
+DROP PROCEDURE [app].[apagaComplementoFormaPagamento];
+PRINT 'v23 - 002 - Exclusao da procedure [app].[apagaComplementoFormaPagamento].';
+PRINT 'Fim do script v23. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

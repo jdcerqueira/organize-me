@@ -1,0 +1,8 @@
+PRINT 'Rollback... Inicio do script v6. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+IF EXISTS(SELECT TOP 1 1 FROM sys.tables WHERE name = 'Bancos' AND schema_id = SCHEMA_ID('fontes'))
+BEGIN
+	DROP TABLE [fontes].[Bancos]
+	PRINT 'Rollback... v6 - 001 - Exclusao da tabela [fontes].[Bancos].'
+END;
+PRINT 'Rollback... Fim do script v6. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

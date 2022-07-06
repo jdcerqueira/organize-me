@@ -1,0 +1,8 @@
+PRINT 'Rollback... Inicio do script v8. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+IF EXISTS(SELECT TOP 1 1 FROM sys.procedures WHERE name = 'apagaBanco' AND schema_id = SCHEMA_ID('app'))
+BEGIN
+	DROP PROCEDURE [app].[apagaBanco]
+	PRINT 'Rollback... v8 - 001 - Exclusao da procedure [app].[apagaBanco].'
+END;
+PRINT 'Rollback... Fim do script v8. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

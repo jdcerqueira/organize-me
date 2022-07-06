@@ -1,0 +1,5 @@
+PRINT 'Rollback... Inicio do script v12. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP PROCEDURE [app].[apagaTipoFormaPagamento]
+PRINT 'Rollback... v12 - 001 - Exclusao da procedure [app].[apagaTipoFormaPagamento].'
+PRINT 'Rollback... Fim do script v12. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

@@ -1,0 +1,5 @@
+PRINT 'Rollback... Inicio do script v10. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP VIEW [app].[vTipoFormaPagamento]
+PRINT 'Rollback... v10 - 001 - Exclusao da view [app].[vTipoFormaPagamento].'
+PRINT 'Rollback... Fim do script v10. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

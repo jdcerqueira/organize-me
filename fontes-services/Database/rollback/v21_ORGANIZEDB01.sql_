@@ -1,0 +1,8 @@
+--##Commit Cria as procedures de insercao e exclusao da tabela [fontes].[FormaPagamento];
+PRINT 'Rollback... Inicio do script v21. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP PROCEDURE [app].[insereFormaPagamento];
+PRINT 'Rollback... v21 - 001 - Exclusao da procedure [app].[insereFormaPagamento].';
+DROP PROCEDURE [app].[apagaFormaPagamento];
+PRINT 'Rollback... v21 - 002 - Exclusao da procedure [app].[apagaFormaPagamento].';
+PRINT 'Rollback... Fim do script v21. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

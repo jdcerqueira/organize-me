@@ -1,0 +1,14 @@
+PRINT 'Rollback... Inicio do script v1. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+IF EXISTS(SELECT TOP 1 1 FROM sys.databases WHERE name = 'ORGANIZEDB01')
+BEGIN
+	ALTER DATABASE ORGANIZEDB01 SET RESTRICTED_USER WITH ROLLBACK IMMEDIATE
+	PRINT 'Rollback... v1 - 001 - Exclusão da base existente - alterando para modo restrito de usuário.'
+END;
+DROP DATABASE ORGANIZEDB01;
+PRINT 'Rollback... v1 - 002 - Exclusão da base existente - excluindo a base existente.'
+IF EXISTS(SELECT TOP 1 1 FROM sys.syslogins WHERE name = 'aplicacao')
+BEGIN
+	DROP LOGIN aplicacao
+	PRINT 'Rollback... v1 - 005 - Encontrou o login [aplicacao] e removeu.'
+END;
+PRINT 'Rollback... Fim do script v1. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

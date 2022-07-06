@@ -1,0 +1,5 @@
+PRINT 'Rollback... Inicio do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+DROP SCHEMA fontes;
+PRINT 'Rollback... v3 - 001 - Excluindo o schema [fontes].';
+PRINT 'Rollback... Fim do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

@@ -1,0 +1,11 @@
+--##Commit Cria o usuário [aplicacao] na base [ORGANIZEDB01] e cria a rule [Cliente];
+PRINT 'Inicio do script v2. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+PRINT 'v2 - 001 - Acessando a base ORGANIZEDB01.';
+CREATE USER aplicacao FOR LOGIN aplicacao;
+PRINT 'v2 - 002 - Criando o usuario [aplicacao].';
+CREATE ROLE [Cliente] AUTHORIZATION [dbo];
+PRINT 'v2 - 003 - Criando o rule [Cliente].';
+ALTER ROLE [Cliente] ADD MEMBER [aplicacao];
+PRINT 'v2 - 004 - Adicionado o usuario [aplicacao] a rule [Cliente].';
+PRINT 'Fim do script v2. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

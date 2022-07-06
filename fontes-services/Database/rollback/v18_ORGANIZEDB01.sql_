@@ -1,0 +1,13 @@
+--##Commit Cria as procedures [app].[insereTemplateComplementoFormaPagamento], [app].[insereTemplateItemComplementoFormaPagamento], [app].[apagaTemplateItemComplementoFormaPagamento] e [app].[apagaTemplateComplementoFormaPagamento];
+PRINT 'Inicio do script v18. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB01;
+
+DROP PROCEDURE [app].[insereTemplateComplementoFormaPagamento];
+PRINT 'v18 - 001 - Exclusao da procedure [app].[insereTemplateComplementoFormaPagamento].';
+DROP PROCEDURE [app].[insereTemplateItemComplementoFormaPagamento];
+PRINT 'v18 - 002 - Exclusao da procedure [app].[insereTemplateComplementoFormaPagamento].';
+DROP PROCEDURE [app].[apagaTemplateItemComplementoFormaPagamento];
+PRINT 'v18 - 003 - Exclusao da procedure [app].[apagaTemplateItemComplementoFormaPagamento].';
+DROP PROCEDURE [app].[apagaTemplateComplementoFormaPagamento];
+PRINT 'v18 - 004 - Exclusao da procedure [app].[apagaTemplateComplementoFormaPagamento].';
+PRINT 'Fim do script v18. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
