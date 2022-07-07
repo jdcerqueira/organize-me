@@ -1,6 +1,14 @@
 [
     {
         "database": "ORGANIZEDB02",
+        "version": "6",
+        "file": "v6_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 21:47:36.763304",
+        "status": "executed",
+        "description": "Cria tabela [cadastro].[Generos], e procedures de inclusao e exclusao e view de listagem"
+    },
+    {
+        "database": "ORGANIZEDB02",
         "version": "5",
         "file": "v5_ORGANIZEDB02.sql",
         "last_date_execution": "2022-07-06 20:23:22.811111",
