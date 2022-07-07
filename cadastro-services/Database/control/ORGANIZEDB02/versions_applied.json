@@ -1,0 +1,42 @@
+[
+    {
+        "database": "ORGANIZEDB02",
+        "version": "5",
+        "file": "v5_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:23:22.811111",
+        "status": "executed",
+        "description": "Cria tabela [cadastro].[Generos], e procedures de inclusao e exclusao e view de listagem"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "4",
+        "file": "v4_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.990236",
+        "status": "executed",
+        "description": "Cria o schema [app]"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "3",
+        "file": "v3_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.987235",
+        "status": "executed",
+        "description": "Cria o schema [cadastro]"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "2",
+        "file": "v2_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.984235",
+        "status": "executed",
+        "description": "Cria o usuário [aplicacao] na base [ORGANIZEDB02] e cria a rule [Cliente]"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "1",
+        "file": "v1_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.980233",
+        "status": "executed",
+        "description": "Cria base de dados [ORGANIZEDB02]"
+    }
+]

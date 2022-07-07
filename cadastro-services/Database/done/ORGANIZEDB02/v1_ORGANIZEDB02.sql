@@ -1,0 +1,8 @@
+--##Commit Cria base de dados [ORGANIZEDB02];
+PRINT 'Inicio do script v1. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE master;
+CREATE DATABASE ORGANIZEDB02;
+PRINT 'v1 - 001 - Criacao da base ORGANIZEDB02.';
+ALTER DATABASE ORGANIZEDB02 SET ALLOW_SNAPSHOT_ISOLATION ON;
+PRINT 'v1 - 002 - Alteracao de permissao do modo SNAPSHOT.';
+PRINT 'Fim do script v1. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

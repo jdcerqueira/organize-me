@@ -1,0 +1,12 @@
+--##Commit Cria tabela [cadastro].[Generos], e procedures de inclusao e exclusao e view de listagem;
+PRINT 'Rollback... Inicio do script v5. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+DROP VIEW [app].[vGeneros];
+PRINT 'Rollback... v5 - 002 - Exclui view [app].[vGeneros].';
+DROP PROCEDURE [app].[insereGenero];
+PRINT 'Rollback... v5 - 003 - Exclui procedure [app].[insereGenero].';
+DROP PROCEDURE [app].[apagaGenero];
+PRINT 'Rollback... v5 - 004 - Exclui procedure [app].[apagaGenero].';
+DROP TABLE [cadastro].[Generos];
+PRINT 'Rollback... v5 - 001 - Exclui tabela [cadastro].[Generos].';
+PRINT 'Rollback... Fim do script v5. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

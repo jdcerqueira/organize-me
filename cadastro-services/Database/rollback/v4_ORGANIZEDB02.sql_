@@ -1,0 +1,6 @@
+--##Commit Cria o schema [app];
+PRINT 'Rollback... Inicio do script v4. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+DROP SCHEMA [app];
+PRINT 'Rollback... v4 - 001 - Excluindo o schema [app].';
+PRINT 'Rollback... Fim do script v4. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
