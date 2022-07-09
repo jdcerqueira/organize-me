@@ -1,0 +1,20 @@
+--##Commit Cria tabelas de endereço: paises, estados, cidades, bairros e logradouros;
+PRINT 'Rollback... Inicio do script v7. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+
+DROP TABLE [cadastro].[Logradouros];
+PRINT 'Rollback... v7 - 001 - Exclui tabela [cadastro].[Logradouros].';
+
+DROP TABLE [cadastro].[Bairros];
+PRINT 'Rollback... v7 - 002 - Exclui tabela [cadastro].[Bairros].';
+
+DROP TABLE [cadastro].[Cidades];
+PRINT 'Rollback... v7 - 003 - Exclui tabela [cadastro].[Cidades].';
+
+DROP TABLE [cadastro].[Estados];
+PRINT 'Rollback... v7 - 004 - Exclui tabela [cadastro].[Estados].';
+
+DROP TABLE [cadastro].[Paises];
+PRINT 'Rollback... v7 - 005 - Exclui tabela [cadastro].[Paises].';
+
+PRINT 'Rollback... Fim do script v6. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

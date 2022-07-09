@@ -1,0 +1,20 @@
+--##Commit Cria insercoes de endereço: paises, estados, cidades, bairros e logradouros;
+PRINT 'Rollback... Inicio do script v9. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+
+DROP PROCEDURE [app].[inserePais];
+PRINT 'Rollback... v9 - 001 - Exclui procedure [app].[inserePais].';
+
+DROP PROCEDURE [app].[insereEstado];
+PRINT 'Rollback... v9 - 002 - Exclui procedure [app].[insereEstado].';
+
+DROP PROCEDURE [app].[insereCidade];
+PRINT 'Rollback... v9 - 003 - Exclui procedure [app].[insereCidade].';
+
+DROP PROCEDURE [app].[insereBairro];
+PRINT 'Rollback... v9 - 004 - Exclui procedure [app].[insereBairro].';
+
+DROP PROCEDURE [app].[insereLogradouro];
+PRINT 'Rollback... v9 - 005 - Exclui procedure [app].[insereLogradouro].';
+
+PRINT 'Rollback... Fim do script v9. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

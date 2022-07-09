@@ -85,7 +85,6 @@ if len(rollback):
 
     for folder in rollback:
         folder_done_rollback = os.path.abspath("done/" + folder["database"] + "/rollback")
-        #folder_log_rollback = os.path.abspath("log/" + folder["database"] + "/rollback")
         folder_control_version = os.path.abspath("control/" + folder["database"])
         versions_json = json.loads(open(os.path.abspath("control/" + folder["database"] + "/versions_applied.json"), "r").read()) if os.path.exists(os.path.abspath("control/" + folder["database"] + "/versions_applied.json")) else []
 
@@ -95,7 +94,6 @@ if len(rollback):
             continue
 
         Path(folder_done_rollback).mkdir(parents=True, exist_ok=True)
-        #Path(folder_log_rollback).mkdir(parents=True, exist_ok=True)
 
         for version in folder["versions"]:
             if version["version"] in [versions["version"] for versions in versions_json]:
@@ -132,11 +130,9 @@ if len(todo):
     for folder in todo:
         folder_control_version = os.path.abspath("control/" + folder["database"])
         folder_done = os.path.abspath("done/" + folder["database"])
-        folder_log = os.path.abspath("log/" + folder["database"])
 
         Path(folder_control_version).mkdir(parents=True, exist_ok=True)
         Path(folder_done).mkdir(parents=True, exist_ok=True)
-        Path(folder_log).mkdir(parents=True, exist_ok=True)
     
         versions_json = json.loads(open(os.path.abspath("control/" + folder["database"] + "/versions_applied.json"), "r").read()) if os.path.exists(os.path.abspath("control/" + folder["database"] + "/versions_applied.json")) else []
         for version in folder["versions"]:
