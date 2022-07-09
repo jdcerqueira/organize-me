@@ -1,6 +1,14 @@
 [
     {
         "database": "ORGANIZEDB02",
+        "version": "11",
+        "file": "v11_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-08 21:42:41.833298",
+        "status": "executed",
+        "description": "Cria consulta de enderecos por CEP"
+    },
+    {
+        "database": "ORGANIZEDB02",
         "version": "10",
         "file": "v10_ORGANIZEDB02.sql",
         "last_date_execution": "2022-07-08 21:18:49.384631",
