@@ -1,6 +1,30 @@
 [
     {
         "database": "ORGANIZEDB02",
+        "version": "14",
+        "file": "v14_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-09 23:47:16.626419",
+        "status": "executed",
+        "description": "Cria tabela de endereco para estabelecimento e funcao de consulta e procedures de insert e delete"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "13",
+        "file": "v13_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-09 23:47:16.617614",
+        "status": "executed",
+        "description": "Cria function para consulta de estabelecimentos por categoria"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "12",
+        "file": "v12_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-09 16:31:04.540019",
+        "status": "executed",
+        "description": "Cria tabela de estabelecimentos e procedures de insercao e exclusao e view de consulta"
+    },
+    {
+        "database": "ORGANIZEDB02",
         "version": "11",
         "file": "v11_ORGANIZEDB02.sql",
         "last_date_execution": "2022-07-08 21:42:41.833298",

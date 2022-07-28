@@ -1,0 +1,16 @@
+--##Commit Cria tabela de estabelecimentos e procedures de insercao e exclusao e view de consulta;
+PRINT 'Rollback... Inicio do script v12. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+
+DROP VIEW [app].[vEstabelecimentos];
+PRINT 'Rollback... v12 - 001 - Exclui view [app].[vEstabelecimentos]';
+
+DROP PROCEDURE [app].[insereEstabelecimento];
+PRINT 'Rollback... v12 - 002 - Exclui procedure [app].[insereEstabelecimento]';
+
+DROP PROCEDURE [app].[apagaEstabelecimento];
+PRINT 'Rollback... v12 - 003 - Exclui procedure [app].[apagaEstabelecimento]';
+
+DROP TABLE [cadastro].[Estabelecimentos];
+PRINT 'Rollback... v12 - 004 - Exclui tabela [cadastro].[Estabelecimentos]';
+PRINT 'Rollback... Fim do script v12. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
