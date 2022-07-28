@@ -1,0 +1,114 @@
+[
+    {
+        "database": "ORGANIZEDB02",
+        "version": "14",
+        "file": "v14_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-09 23:47:16.626419",
+        "status": "executed",
+        "description": "Cria tabela de endereco para estabelecimento e funcao de consulta e procedures de insert e delete"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "13",
+        "file": "v13_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-09 23:47:16.617614",
+        "status": "executed",
+        "description": "Cria function para consulta de estabelecimentos por categoria"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "12",
+        "file": "v12_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-09 16:31:04.540019",
+        "status": "executed",
+        "description": "Cria tabela de estabelecimentos e procedures de insercao e exclusao e view de consulta"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "11",
+        "file": "v11_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-08 21:42:41.833298",
+        "status": "executed",
+        "description": "Cria consulta de enderecos por CEP"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "10",
+        "file": "v10_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-08 21:18:49.384631",
+        "status": "executed",
+        "description": "Cria tabela [cadastro].[Categorias], e procedures de inclusao e exclusao e view de listagem"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "9",
+        "file": "v9_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-07 23:44:48.086286",
+        "status": "executed",
+        "description": "Cria insercoes de endereço: paises, estados, cidades, bairros e logradouros"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "8",
+        "file": "v8_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-07 22:02:29.709686",
+        "status": "executed",
+        "description": "Cria views e functions de endereço: paises, estados, cidades, bairros e logradouros"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "7",
+        "file": "v7_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-07 19:23:01.608387",
+        "status": "executed",
+        "description": "Cria tabelas de endereço: paises, estados, cidades, bairros e logradouros"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "6",
+        "file": "v6_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 21:47:36.763304",
+        "status": "executed",
+        "description": "Cria tabela [cadastro].[Generos], e procedures de inclusao e exclusao e view de listagem"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "5",
+        "file": "v5_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:23:22.811111",
+        "status": "executed",
+        "description": "Cria tabela [cadastro].[Generos], e procedures de inclusao e exclusao e view de listagem"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "4",
+        "file": "v4_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.990236",
+        "status": "executed",
+        "description": "Cria o schema [app]"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "3",
+        "file": "v3_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.987235",
+        "status": "executed",
+        "description": "Cria o schema [cadastro]"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "2",
+        "file": "v2_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.984235",
+        "status": "executed",
+        "description": "Cria o usuário [aplicacao] na base [ORGANIZEDB02] e cria a rule [Cliente]"
+    },
+    {
+        "database": "ORGANIZEDB02",
+        "version": "1",
+        "file": "v1_ORGANIZEDB02.sql",
+        "last_date_execution": "2022-07-06 20:00:56.980233",
+        "status": "executed",
+        "description": "Cria base de dados [ORGANIZEDB02]"
+    }
+]

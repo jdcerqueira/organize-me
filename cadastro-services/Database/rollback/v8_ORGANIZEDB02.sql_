@@ -1,0 +1,22 @@
+--##Commit Cria views e functions de endereço: paises, estados, cidades, bairros e logradouros;
+PRINT 'Rollback... Inicio do script v8. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+
+DROP VIEW [app].[vPaises];
+PRINT 'Rollback... v8 - 001 - Exclui view [app].[vPaises].';
+
+DROP FUNCTION [app].[fEstados];
+PRINT 'Rollback... v8 - 002 - Exclui function [app].[fEstados].';
+
+DROP FUNCTION [app].[fCidades];
+PRINT 'Rollback... v8 - 003 - Exclui function [app].[fCidades].';
+
+DROP FUNCTION [app].[fBairros];
+PRINT 'Rollback... v8 - 004 - Exclui function [app].[fBairros].';
+
+DROP VIEW [app].[vLogradouros];
+PRINT 'Rollback... v8 - 005 - Exclui view [app].[vLogradouros].';
+
+DROP FUNCTION [app].[fLogradouros];
+PRINT 'Rollback... v8 - 006 - Exclui function [app].[fLogradouros].';
+PRINT 'Rollback... Fim do script v8. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

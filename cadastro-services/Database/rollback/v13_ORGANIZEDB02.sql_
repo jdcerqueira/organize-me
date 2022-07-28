@@ -1,0 +1,6 @@
+--##Commit Cria function para consulta de estabelecimentos por categoria
+PRINT 'Rollback... Inicio do script v13. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+DROP FUNCTION [app].[fEstabelecimentos];
+PRINT 'Rollback... v13 - 001 - Exclui function [app].[fEstabelecimentos].'
+PRINT 'Rollback... Fim do script v13. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

@@ -1,0 +1,8 @@
+--##Commit Cria base de dados [ORGANIZEDB02];
+PRINT 'Rollback... Inicio do script v1. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE master;
+ALTER DATABASE ORGANIZEDB02 SET RESTRICTED_USER WITH ROLLBACK IMMEDIATE;
+PRINT 'Rollback... v1 - 001 - Desconecta os usuarios da base ORGANIZEDB02.';
+DROP DATABASE ORGANIZEDB02;
+PRINT 'Rollback... v1 - 001 - Exclusao da base ORGANIZEDB02.';
+PRINT 'Rollback... Fim do script v1. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

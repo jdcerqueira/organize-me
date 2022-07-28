@@ -1,0 +1,16 @@
+--##Commit Cria tabela de endereco para estabelecimento e funcao de consulta e procedures de insert e delete
+PRINT 'Rollback... Inicio do script v14. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+
+DROP FUNCTION [app].[fEnderecosEstabelecimento];
+PRINT 'Rollback... v14 - 001 - Exclui function [app].[fEnderecosEstabelecimento].';
+
+DROP PROCEDURE [app].[insereEnderecoEstabelecimento];
+PRINT 'Rollback... v14 - 002 - Exclui procedure [app].[insereEnderecoEstabelecimento].';
+
+DROP PROCEDURE [app].[apagaEnderecoEstabelecimento];
+PRINT 'Rollback... v14 - 003 - Exclui procedure [app].[apagaEnderecoEstabelecimento].';
+
+DROP TABLE [cadastro].[EnderecosEstabelecimento]
+PRINT 'Rollback... v14 - 004 - Exclui tabela [cadastro].[EnderecosEstabelecimento].'
+PRINT 'Rollback... Fim do script v14. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

@@ -1,0 +1,16 @@
+--##Commit Cria tabela [cadastro].[Categorias], e procedures de inclusao e exclusao e view de listagem;
+PRINT 'Rollback... Inicio do script v10. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+
+DROP VIEW [app].[vCategorias];
+PRINT 'Rollback... v10 - 001 - Exclui view [app].[vCategorias].';
+
+DROP PROCEDURE [app].[insereCategoria];
+PRINT 'Rollback... v10 - 002 - Exclui procedure [app].[insereCategoria].';
+
+DROP PROCEDURE [app].[apagaCategorias];
+PRINT 'Rollback... v10 - 003 - Exclui procedure [app].[apagaCategorias].';
+
+DROP TABLE [cadastro].[Categorias];
+PRINT 'Rollback... v10 - 004 - Exclui tabela [cadastro].[Categorias].';
+PRINT 'Rollback... Fim do script v10. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

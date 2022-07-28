@@ -1,0 +1,6 @@
+--##Commit Cria o schema [cadastro];
+PRINT 'Rollback... Inicio do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+DROP SCHEMA [cadastro];
+PRINT 'Rollback... v3 - 001 - Excluindo o schema [cadastro].';
+PRINT 'Rollback... Fim do script v3. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

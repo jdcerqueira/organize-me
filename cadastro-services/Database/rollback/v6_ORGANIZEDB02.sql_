@@ -1,0 +1,16 @@
+--##Commit Rollback
+PRINT 'Rollback... Inicio do script v6. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+
+DROP VIEW [app].[vResponsaveis];
+PRINT 'Rollback... v6 - 001 - Exclui view [app].[vResponsaveis].';
+
+DROP PROCEDURE [app].[insereResponsavel];
+PRINT 'Rollback... v6 - 002 - Exclui procedure [app].[insereResponsavel].';
+
+DROP PROCEDURE [app].[apagaResponsavel];
+PRINT 'Rollback... v6 - 003 - Exclui procedure [app].[apagaResponsavel].';
+
+DROP TABLE [cadastro].[Responsaveis];
+PRINT 'Rollback... v6 - 004 - Exclui tabela [cadastro].[Responsaveis].';
+PRINT 'Rollback... Fim do script v6. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

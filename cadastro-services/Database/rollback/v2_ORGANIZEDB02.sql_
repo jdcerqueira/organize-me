@@ -1,0 +1,8 @@
+--##Commit Cria o usuário [aplicacao] na base [ORGANIZEDB02] e cria a rule [Cliente];
+PRINT 'Rollback... Inicio do script v2. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+DROP USER [aplicacao];
+PRINT 'Rollback... v2 - 001 - Excluindo o usuario [aplicacao].';
+DROP ROLE [Cliente];
+PRINT 'Rollback... v2 - 002 - Excluindo o rule [Cliente].';
+PRINT 'Rollback... Fim do script v2. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';

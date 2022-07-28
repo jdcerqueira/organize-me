@@ -1,0 +1,6 @@
+--##Commit Cria consulta de enderecos por CEP;
+PRINT 'Rollback... Inicio do script v11. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
+USE ORGANIZEDB02;
+DROP VIEW [app].[vEnderecos];
+PRINT 'Rollback... v11 - 001 - Exclui view [app].[vEnderecos].';
+PRINT 'Rollback... Fim do script v11. - (' + CONVERT(VARCHAR,GETDATE(),120) + ' ' + CONVERT(VARCHAR,GETDATE(),114) + ')';
