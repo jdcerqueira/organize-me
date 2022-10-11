@@ -64,7 +64,8 @@ def applyScriptDb(path, file, log, tag_description):
     return (executed, infos_processes, description)
 
 # Variables
-dbmaster_datasource = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=DESKTOP-SCVFDSG\SQL2019A;DATABASE=master;UID=dbapply;PWD=dbapply;autocommit=True"
+#dbmaster_datasource = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=DESKTOP-SCVFDSG\SQL2019A;DATABASE=master;UID=dbapply;PWD=dbapply;autocommit=True"
+dbmaster_datasource = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=192.168.15.48;DATABASE=master;UID=dbapply;PWD=dbapply;autocommit=True"
 connection = pyodbc.connect(dbmaster_datasource)
 connection.autocommit = True
 
